@@ -22,12 +22,11 @@ public class User {
     private String password;//密码
 
     @NotEmpty
-    @Pattern(regexp = "^\\S{1,10}$")
-    private String nickname;//昵称
-
-    @NotEmpty
     @Email
     private String email;//邮箱
+    @NotEmpty
+    private String phoneNumber; // 电话号码
+
     private String userPic;//用户头像地址
     private LocalDateTime createTime;//创建时间
     private LocalDateTime updateTime;//更新时间
