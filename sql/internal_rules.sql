@@ -1,4 +1,4 @@
-INSERT INTO template_details (id, template_id, classify_1, classify_2, classify_3, classify_4, rule_name, rule_name_eng,
+INSERT INTO internal_rules (id, template_id, classify_1, classify_2, classify_3, classify_4, rule_name, rule_name_eng,
                               rule_rank)
 VALUES (1, 1, '业务数据', '寄递物品及费用信息', '', '', '运费', 'freight', '中'),
        (2, 1, '业务数据', '寄递物品重量', '', '', '寄递物品重量', 'parcel_weight', '中'),

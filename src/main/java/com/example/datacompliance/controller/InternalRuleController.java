@@ -2,18 +2,18 @@ package com.example.datacompliance.controller;
 
 
 import com.example.datacompliance.entity.Result;
-import com.example.datacompliance.entity.RuleTemplate;
-import com.example.datacompliance.service.RuleService;
+import com.example.datacompliance.entity.InternalRuleTemplate;
+import com.example.datacompliance.service.InternalRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/rule")
+@RequestMapping("/internalRule")
 @Validated
-public class RuleController {
+public class InternalRuleController {
     @Autowired
-    private RuleService ruleService;
+    private InternalRuleService ruleService;
 
     @GetMapping("/allRuleTemplates")
     public Result getAllRuleTemplates() {
@@ -22,7 +22,7 @@ public class RuleController {
 
     @PostMapping("/addRuleTemplate")
     public Result addRuleTemplate(String name, String description) {
-        RuleTemplate r = ruleService.findTemplateByName(name);
+        InternalRuleTemplate r = ruleService.findTemplateByName(name);
         if (r == null) {
             ruleService.addRuleTemplate(name, description);
             return Result.success();

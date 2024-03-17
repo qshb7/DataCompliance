@@ -51,7 +51,7 @@ CREATE TABLE general_access
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8;
 
-CREATE TABLE rule_template
+CREATE TABLE internal_rule_template
 (
     id          INT NOT NULL AUTO_INCREMENT,
     name        VARCHAR(255) DEFAULT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE rule_template
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8;
 
-CREATE TABLE template_details
+CREATE TABLE internal_rules
 (
     id          INT          NOT NULL AUTO_INCREMENT,
     template_id INT          NOT NULL,
@@ -79,5 +79,21 @@ CREATE TABLE template_details
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8;
+
+CREATE TABLE custom_rules
+(
+    id             INT          NOT NULL AUTO_INCREMENT,
+    name           VARCHAR(255) NOT NULL,
+    description    VARCHAR(2550),
+    matchOperators VARCHAR(255) NOT NULL,
+    source VARCHAR(255) NOT NULL,
+    status         INT          NOT NULL,
+    contentRule    VARCHAR(2550) default NULL,
+    metaRule       VARCHAR(2550) default NULL,
+    primary key (id)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8;
+
 
 

@@ -1,30 +1,31 @@
 package com.example.datacompliance.service.impl;
 
-import com.example.datacompliance.entity.RuleTemplate;
-import com.example.datacompliance.mapper.RuleMapper;
-import com.example.datacompliance.service.RuleService;
+import com.example.datacompliance.entity.InternalRule;
+import com.example.datacompliance.entity.InternalRuleTemplate;
+import com.example.datacompliance.mapper.InternalRuleMapper;
+import com.example.datacompliance.service.InternalRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RuleServiceImpl implements RuleService {
+public class InternalRuleServiceImpl implements InternalRuleService {
     @Autowired
-    private RuleMapper ruleMapper;
+    private InternalRuleMapper ruleMapper;
     @Override
-    public List<RuleTemplate> findTemplateAll() {
+    public List<InternalRuleTemplate> findTemplateAll() {
 
         return ruleMapper.findTemplateAll();
     }
 
     @Override
-    public RuleTemplate findTemplateById(Integer id) {
+    public InternalRuleTemplate findTemplateById(Integer id) {
         return ruleMapper.findTemplateById(id);
     }
 
     @Override
-    public RuleTemplate findTemplateByName(String name) {
+    public InternalRuleTemplate findTemplateByName(String name) {
         return ruleMapper.findTemplateByName(name);
     }
 
@@ -42,6 +43,16 @@ public class RuleServiceImpl implements RuleService {
     @Override
     public void updateRuleTemplate(Integer id, String name, String description) {
         ruleMapper.updateRuleTemplate(id,name,description);
+    }
+
+    @Override
+    public List<InternalRule> findRulesByTemplateId(Integer templateId) {
+        return null;
+    }
+
+    @Override
+    public List<InternalRule> findAllRules() {
+        return null;
     }
 
 
