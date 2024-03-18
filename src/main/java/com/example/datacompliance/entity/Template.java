@@ -6,7 +6,7 @@ import lombok.NonNull;
 import java.time.LocalDateTime;
 
 @Data
-public class InternalRuleTemplate {
+public class Template {
     @NonNull
     private Integer id;
 

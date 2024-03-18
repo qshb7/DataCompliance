@@ -1,13 +1,13 @@
 package com.example.datacompliance.entity;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Data
 @NoArgsConstructor
-public class CustomRule {
+public class Rule {
     @NonNull
     private Integer id;
 
@@ -17,8 +17,8 @@ public class CustomRule {
     private String matchOperators;
     private Integer status;
     //内容规则
-    private CustomRuleContent contentRule;
+    private RuleDetail contentRule;
     //字段规则
-    private CustomRuleContent metaRule;
+    private RuleDetail metaRule;
 
 }

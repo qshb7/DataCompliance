@@ -1,12 +1,13 @@
 package com.example.datacompliance.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class CustomRuleContent {
+public class RuleDetail {
     private String operator;
     private List<RuleContent> ruleContents;
     @Data

@@ -1,19 +1,17 @@
 package com.example.datacompliance.utils;
 
-import com.example.datacompliance.entity.CustomRuleContent;
-import com.example.datacompliance.entity.CustomRuleContent.RuleContent;
-import com.example.datacompliance.entity.CustomRuleContent.RuleContent.ExtendParameter;
+import com.example.datacompliance.entity.RuleDetail;
+import com.example.datacompliance.entity.RuleDetail.RuleContent.ExtendParameter;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class VerifyUtil {
-    public static int verifyRuleContent(CustomRuleContent ruleContent, String verifyValue) {
+    public static int verifyRuleContent(RuleDetail ruleContent, String verifyValue) {
         String operator = ruleContent.getOperator();
         if ("or".equals(operator)) {
             // 遍历规则列表，只要有一个规则匹配即可
-            for (RuleContent rule : ruleContent.getRuleContents()) {
+            for (RuleDetail.RuleContent rule : ruleContent.getRuleContents()) {
                 if (matchRule(rule, verifyValue)) {
                     return 1; // 匹配成功，返回 1 表示验证通过
                 }
@@ -21,7 +19,7 @@ public class VerifyUtil {
             return 0; // 所有规则都不匹配，返回零值表示验证失败
         } else if ("and".equals(operator)) {
             // 遍历规则列表，所有规则都必须匹配才算通过
-            for (RuleContent rule : ruleContent.getRuleContents()) {
+            for (RuleDetail.RuleContent rule : ruleContent.getRuleContents()) {
                 if (!matchRule(rule, verifyValue)) {
                     return 0; // 有任何一个规则不匹配，返回零值表示验证失败
                 }
@@ -33,7 +31,7 @@ public class VerifyUtil {
         }
     }
 
-    public static boolean matchRule(RuleContent rule, String verifyValue) {
+    public static boolean matchRule(RuleDetail.RuleContent rule, String verifyValue) {
         String ruleType = rule.getRuleType();
         String ruleContent = rule.getRuleContent();
         boolean isFullWordMatch = false;

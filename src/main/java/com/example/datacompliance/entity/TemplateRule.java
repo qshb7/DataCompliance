@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NonNull;
 
 @Data
-public class InternalRule {
+public class TemplateRule {
     @NonNull
     private Integer id;
 
