@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class TaskParams {
+public class Task {
     @NonNull
     private Integer id;
     private String name;
@@ -20,5 +20,8 @@ public class TaskParams {
     private String cycle;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startTime;
+    private String status;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime lastFinishedTime;
 
 }

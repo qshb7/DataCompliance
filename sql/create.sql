@@ -121,6 +121,40 @@ CREATE TABLE data_source_config
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8;
 
+CREATE TABLE sensitive_data
+(
+    id             INT          NOT NULL AUTO_INCREMENT,
+    data_source_id INT          NOT NULL,
+    database_name  VARCHAR(255) NOT NULL,
+    table_name     VARCHAR(255) NOT NULL,
+    field_name     VARCHAR(255) NOT NULL,
+    rule_id        INT          NOT NULL,
+    rule_rank      VARCHAR(255) NOT NULL,
+    primary key (id)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8;
+
+CREATE TABLE classify_task
+(
+    id                 INT          NOT NULL AUTO_INCREMENT,
+    name               VARCHAR(255) NOT NULL,
+    description        VARCHAR(2550),
+    data_source_id     INT          NOT NULL,
+    template_id        INT          NOT NULL,
+    execute_plan       VARCHAR(255) NOT NULL,
+    cycle              VARCHAR(255) NOT NULL,
+    start_time         DATETIME DEFAULT NULL,
+    last_finished_time DATETIME DEFAULT NULL,
+    status             VARCHAR(255) NOT NULL,
+    primary key (id)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8;
+
+
+
+
 
 
 

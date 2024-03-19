@@ -26,25 +26,17 @@ public class DataSourceServiceImpl implements DataSourceService {
                     dataSourceConfig.getDatabase(),dataSourceConfig.getConfig());
 
             // 执行查询
-            Statement statement = connection.createStatement();
-            // 执行查询语句
-            ResultSet resultSet = statement.executeQuery("SHOW TABLES");
-
-            // 遍历结果集并输出表名
-            System.out.println("Tables in the database:");
-            while (resultSet.next()) {
-                String tableName = resultSet.getString(1); // 第一列的表名
-                System.out.println(tableName);
-            }
-
+            System.out.println(DataSourceUtil.getAllTables(connection));
             // 释放资源
-            resultSet.close();
-            statement.close();
             connection.close();
-
         }catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public DataSourceConfig findConfigById(Integer id) {
+        return dataSourceConfigMapper.findConfigById(id);
     }
 }

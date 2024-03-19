@@ -24,4 +24,5 @@ public interface TemplateMapper {
     @Update("update templates set name=#{name},description=#{description},edit_time=now() where id=#{id}")
     void updateRuleTemplate(Integer id,String name,String description);
 
+
 }

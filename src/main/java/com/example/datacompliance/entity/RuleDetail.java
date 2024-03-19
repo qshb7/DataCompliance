@@ -1,5 +1,6 @@
 package com.example.datacompliance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RuleDetail {
     private String operator;
     private List<RuleContent> ruleContents;
@@ -20,16 +22,6 @@ public class RuleDetail {
         public static class ExtendParameter {
             private String name;
             private String value;
-        }
-    }
-
-    public String toJsonString() {
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.writeValueAsString(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
     }
 }

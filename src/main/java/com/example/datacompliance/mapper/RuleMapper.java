@@ -4,6 +4,7 @@ import com.example.datacompliance.entity.Rule;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface RuleMapper {
@@ -23,4 +24,7 @@ public interface RuleMapper {
 
     @Select("select * from rule where name=#{name}")
     Rule findRuleByName(String name);
+
+    @Select("select DISTINCT rule_name,rule_rank from template_and_rules where template_id=#{templateId} AND rule_name IS NOT NULL AND rule_name != ''")
+    List<Map<String, Object>> findTemplateRules(Integer templateId);
 }

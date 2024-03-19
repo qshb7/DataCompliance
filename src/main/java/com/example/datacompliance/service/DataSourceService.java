@@ -7,4 +7,6 @@ import java.sql.SQLException;
 
 public interface DataSourceService {
     void newConnect(DataSourceConfig dataSourceConfig) throws SQLException, ClassNotFoundException, JsonProcessingException;
+
+    DataSourceConfig findConfigById(Integer id);
 }

@@ -7,9 +7,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class DataSourceUtil {
@@ -67,4 +68,45 @@ public class DataSourceUtil {
         // 获取连接
         return dataSource.getConnection();
     }
+
+    public static List<String> getAllTables(Connection connection) throws SQLException {
+        // 执行获取所有表的 SQL 查询，返回表名列表
+        List<String> tables = new ArrayList<>();
+        DatabaseMetaData metaData = connection.getMetaData();
+        try (ResultSet resultSet = metaData.getTables(null, null, "%", new String[]{"TABLE"})) {
+            while (resultSet.next()) {
+                String tableName = resultSet.getString("TABLE_NAME");
+                tables.add(tableName);
+            }
+        }
+        return tables;
+    }
+
+    public static List<String> getAllFields(Connection connection, String tableName) throws SQLException {
+        List<String> fields = new ArrayList<>();
+        DatabaseMetaData metaData = connection.getMetaData();
+        try (ResultSet resultSet = metaData.getColumns(null, null, tableName, null)) {
+            while (resultSet.next()) {
+                String fieldName = resultSet.getString("COLUMN_NAME");
+                fields.add(fieldName);
+            }
+        }
+        return fields;
+    }
+
+    public static Object getFieldValue(Connection connection, String tableName, String fieldName) throws SQLException {
+        Object value = null;
+        String sql = "SELECT `" + fieldName + "` FROM `" + tableName + "` LIMIT 1";
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+            if (resultSet.next()) {
+                value = resultSet.getObject(fieldName);
+            }
+        }
+        return value;
+    }
+
+
+
+
 }

@@ -49,6 +49,10 @@ public class VerifyUtil {
         }
 
         if ("regex".equals(ruleType)) {
+            if (ruleContent == null) {
+                // 如果 ruleContent 为 null，直接返回匹配成功
+                return false;
+            }
             // 使用正则表达式进行匹配
             Pattern pattern = Pattern.compile(ruleContent);
             Matcher matcher = pattern.matcher(verifyValue);

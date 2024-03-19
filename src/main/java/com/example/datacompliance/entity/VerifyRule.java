@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VerifyRule {
     //内容规则
-    private RuleDetail contentRule;
+    private String contentRule;
     //字段规则
-    private RuleDetail metaRule;
+    private String metaRule;
     private String matchOperators;
     private String verifyContent;
     private String verifyMeta;
