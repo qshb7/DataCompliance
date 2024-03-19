@@ -15,4 +15,6 @@ public interface RuleService {
     void updateRule(Rule rule);
 
     List<Rule> findRuleAll();
+
+    Rule findRuleByName(String name);
 }

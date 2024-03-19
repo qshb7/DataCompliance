@@ -5,6 +5,7 @@ import com.example.datacompliance.entity.RuleDetail;
 import com.example.datacompliance.entity.VerifyRule;
 import com.example.datacompliance.mapper.RuleMapper;
 import com.example.datacompliance.service.RuleService;
+import com.example.datacompliance.utils.JsonUtil;
 import com.example.datacompliance.utils.VerifyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class RuleServiceImpl implements RuleService {
     RuleMapper ruleMapper;
     @Override
     public void addRule(Rule rule) {
-        ruleMapper.addRule(rule.getName(), rule.getDescription(), rule.getMatchOperators(), rule.getSource(), rule.getStatus(), rule.getContentRule().toJsonString(), rule.getMetaRule().toJsonString());
+        ruleMapper.addRule(rule.getName(), rule.getDescription(), rule.getMatchOperators(), rule.getSource(), rule.getStatus(), rule.getContentRule(), rule.getMetaRule());
         System.out.println(rule);
     }
 
@@ -56,8 +57,8 @@ public class RuleServiceImpl implements RuleService {
         String description= rule.getDescription();
         String matchOperators= rule.getMatchOperators();
         Integer status= rule.getStatus();
-        String contentRule= rule.getContentRule().toJsonString();
-        String metaRule = rule.getMetaRule().toJsonString();
+        String contentRule= rule.getContentRule();
+        String metaRule = rule.getMetaRule();
         ruleMapper.updateRule(id,name,description,matchOperators,status,contentRule,metaRule);
     }
 
@@ -65,5 +66,10 @@ public class RuleServiceImpl implements RuleService {
     public List<Rule> findRuleAll() {
         System.out.println(ruleMapper.findRuleAll());
         return ruleMapper.findRuleAll();
+    }
+
+    @Override
+    public Rule findRuleByName(String name) {
+        return ruleMapper.findRuleByName(name);
     }
 }

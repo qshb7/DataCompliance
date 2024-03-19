@@ -79,16 +79,16 @@ CREATE TABLE template_and_rules
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8;
 
-CREATE TABLE rules
+CREATE TABLE rule
 (
-    id             INT          NOT NULL AUTO_INCREMENT,
-    name           VARCHAR(255) NOT NULL,
-    description    VARCHAR(2550),
-    matchOperators VARCHAR(255) NOT NULL,
-    source VARCHAR(255) NOT NULL,
-    status         INT          NOT NULL,
-    contentRule    VARCHAR(2550) default NULL,
-    metaRule       VARCHAR(2550) default NULL,
+    id              INT          NOT NULL AUTO_INCREMENT,
+    name            VARCHAR(255) NOT NULL,
+    description     VARCHAR(2550),
+    match_operators VARCHAR(255) NOT NULL,
+    source          VARCHAR(255) NOT NULL,
+    status          INT          NOT NULL,
+    content_rule    VARCHAR(2550) default NULL,
+    meta_rule       VARCHAR(2550) default NULL,
     primary key (id)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -96,9 +96,26 @@ CREATE TABLE rules
 
 CREATE TABLE classification
 (
-    id             INT          NOT NULL AUTO_INCREMENT,
-    name           VARCHAR(255) NOT NULL,
+    id     INT          NOT NULL AUTO_INCREMENT,
+    name   VARCHAR(255) NOT NULL,
     source VARCHAR(255) NOT NULL,
+    primary key (id)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8;
+
+CREATE TABLE data_source_config
+(
+    id               INT          NOT NULL AUTO_INCREMENT,
+    data_source_type VARCHAR(255) NOT NULL,
+    name             VARCHAR(255) NOT NULL,
+    description      VARCHAR(2550),
+    ip               VARCHAR(255) NOT NULL,
+    port             VARCHAR(255) NOT NULL,
+    userName         VARCHAR(255) NOT NULL,
+    passwd           VARCHAR(64)  NOT NULL,
+    `database`       VARCHAR(255) NOT NULL,
+    config           VARCHAR(255) DEFAULT NULL,
     primary key (id)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1

@@ -17,8 +17,8 @@ public class Rule {
     private String matchOperators;
     private Integer status;
     //内容规则
-    private RuleDetail contentRule;
+    private String contentRule;
     //字段规则
-    private RuleDetail metaRule;
+    private String metaRule;
 
 }

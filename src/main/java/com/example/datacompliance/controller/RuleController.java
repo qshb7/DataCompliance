@@ -43,4 +43,10 @@ public class RuleController {
         return Result.success(ruleService.findRuleAll());
     }
 
+    @GetMapping("/findRuleByName")
+    public Result findRuleByName(@RequestParam String name){
+        return Result.success(ruleService.findRuleByName(name));
+    }
+
+
 }
