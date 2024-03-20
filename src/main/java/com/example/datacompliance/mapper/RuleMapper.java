@@ -25,6 +25,4 @@ public interface RuleMapper {
     @Select("select * from rule where name=#{name}")
     Rule findRuleByName(String name);
 
-    @Select("select DISTINCT rule_name,rule_rank from template_and_rules where template_id=#{templateId} AND rule_name IS NOT NULL AND rule_name != ''")
-    List<Map<String, Object>> findTemplateRules(Integer templateId);
 }

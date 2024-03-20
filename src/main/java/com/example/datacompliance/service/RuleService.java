@@ -23,5 +23,4 @@ public interface RuleService {
 
     void newScanTask(TaskParams taskParams);
 
-    List<Map<String, Object>> findTemplateRules(Integer templateId);
 }

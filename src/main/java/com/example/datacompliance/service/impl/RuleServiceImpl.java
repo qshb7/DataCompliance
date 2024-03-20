@@ -1,10 +1,7 @@
 package com.example.datacompliance.service.impl;
 
 import com.example.datacompliance.entity.*;
-import com.example.datacompliance.mapper.DataSourceConfigMapper;
-import com.example.datacompliance.mapper.RuleMapper;
-import com.example.datacompliance.mapper.SensitiveDataMapper;
-import com.example.datacompliance.mapper.TaskMapper;
+import com.example.datacompliance.mapper.*;
 import com.example.datacompliance.service.RuleService;
 import com.example.datacompliance.utils.DataSourceUtil;
 import com.example.datacompliance.utils.JsonUtil;
@@ -36,6 +33,9 @@ public class RuleServiceImpl implements RuleService {
 
     @Autowired
     TaskMapper taskMapper;
+
+    @Autowired
+    TemplateRuleMapper templateRuleMapper;
 
     @Override
     public void addRule(Rule rule) {
@@ -98,7 +98,7 @@ public class RuleServiceImpl implements RuleService {
     @Override
     public void newScanTask(TaskParams taskParams) {
         DataSourceConfig dataSourceConfig = dataSourceConfigMapper.findConfigById(taskParams.getDataSourceId());
-        List<Map<String, Object>> ruleList = ruleMapper.findTemplateRules(taskParams.getTemplateId());
+        List<Map<String, Object>> ruleList = templateRuleMapper.getRulesByTemplateId(taskParams.getTemplateId());
 
         Task task=new Task();
         task.setName(taskParams.getName());
@@ -145,6 +145,19 @@ public class RuleServiceImpl implements RuleService {
 
             }
 
+            // 从数据库中获取刚插入的任务的ID
+            Integer taskId = taskMapper.getLastInsertedTaskId();
+            if (taskId != null) {
+                // 设置任务状态为已完成
+                task.setId(taskId); // 设置任务ID
+                task.setStatus("已完成");
+                task.setLastFinishedTime(LocalDateTime.now());
+                taskMapper.updateTask(task);
+            } else {
+                // 处理未能获取到任务ID的情况
+                System.err.println("Failed to get last inserted task ID.");
+            }
+
 
         } catch (SQLException | JsonProcessingException e) {
             e.printStackTrace();
@@ -157,14 +170,7 @@ public class RuleServiceImpl implements RuleService {
                     e.printStackTrace();
                 }
             }
-            // 设置任务状态为已完成
-            task.setStatus("已完成");
-            task.setLastFinishedTime(LocalDateTime.now());
         }
     }
 
-    @Override
-    public List<Map<String, Object>> findTemplateRules(Integer templateId) {
-        return ruleMapper.findTemplateRules(templateId);
-    }
 }

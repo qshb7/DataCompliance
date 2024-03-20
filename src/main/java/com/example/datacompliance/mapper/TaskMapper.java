@@ -4,6 +4,7 @@ import com.example.datacompliance.entity.Task;
 import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Mapper
 public interface TaskMapper {
@@ -24,7 +25,11 @@ public interface TaskMapper {
     Task getTaskById(Integer id);
 
     @Select("SELECT * FROM classify_task")
-    Task getTasks();
+    List<Task> getTasks();
+
+    @Select("SELECT id FROM classify_task ORDER BY id DESC LIMIT 1")
+    Integer getLastInsertedTaskId();
+
 
 }
 

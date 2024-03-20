@@ -98,9 +98,5 @@ public class RuleController {
         return Result.success();
     }
 
-    @GetMapping("/findTemplateRules")
-    public Result findTemplateRules(@RequestParam Integer templateId){
-        return Result.success(ruleService.findTemplateRules(templateId));
-    }
 
 }
