@@ -43,4 +43,9 @@ public class SensitiveDataServiceImpl implements SensitiveDataService {
     public List<SensitiveData> findDistinctDataAndFields() {
         return sensitiveDataMapper.findDistinctDataAndFields();
     }
+
+    @Override
+    public List<String> findSensitiveTables(Integer datasourceId) {
+        return sensitiveDataMapper.findSensitiveTables(datasourceId);
+    }
 }

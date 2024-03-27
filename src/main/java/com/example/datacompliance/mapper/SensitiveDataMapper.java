@@ -25,6 +25,9 @@ public interface SensitiveDataMapper {
     @Select("SELECT DISTINCT data_source_id, table_name, field_name FROM sensitive_data")
     List<SensitiveData> findDistinctDataAndFields();
 
+    @Select("SELECT DISTINCT table_name FROM sensitive_data where id=#{dataSourceId}")
+    List<String> findSensitiveTables(Integer dataSourceId);
+
 
 
 }

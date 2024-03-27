@@ -152,6 +152,86 @@ CREATE TABLE classify_task
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8;
 
+CREATE TABLE sensitive_data_query_log
+(
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp     DATETIME,
+    account_user  VARCHAR(255),
+    account_host  VARCHAR(255),
+    login_ip      VARCHAR(255),
+    db            VARCHAR(255),
+    table_name    VARCHAR(255),
+    sql_command   VARCHAR(255),
+    query         TEXT,
+    datasource_id INT
+);
+
+CREATE TABLE privileged_command_execution_log
+(
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp     DATETIME,
+    account_user  VARCHAR(255),
+    account_host  VARCHAR(255),
+    login_ip      VARCHAR(255),
+    sql_command   VARCHAR(255),
+    query         TEXT,
+    datasource_id INT
+);
+
+CREATE TABLE account_creation_deletion_log
+(
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp     DATETIME,
+    account_user  VARCHAR(255),
+    account_host  VARCHAR(255),
+    login_ip      VARCHAR(255),
+    event         VARCHAR(50),
+    datasource_id INT
+);
+
+CREATE TABLE permission_change_log
+(
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp     DATETIME,
+    account_user  VARCHAR(255),
+    account_host  VARCHAR(255),
+    login_ip      VARCHAR(255),
+    sql_command   VARCHAR(255),
+    query         TEXT,
+    datasource_id INT
+);
+
+CREATE TABLE unauthorized_access_log
+(
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp     DATETIME,
+    account_user  VARCHAR(255),
+    account_host  VARCHAR(255),
+    login_ip      VARCHAR(255),
+    event         VARCHAR(50),
+    datasource_id INT
+);
+
+CREATE TABLE login_failure_log
+(
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp     DATETIME,
+    account_user  VARCHAR(255),
+    account_host  VARCHAR(255),
+    login_ip      VARCHAR(255),
+    datasource_id INT
+);
+
+CREATE TABLE risk_log
+(
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp     DATETIME,
+    type          VARCHAR(50),
+    description   TEXT,
+    datasource_id INT
+);
+
+
 
 
 

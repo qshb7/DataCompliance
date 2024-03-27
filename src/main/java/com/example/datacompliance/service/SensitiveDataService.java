@@ -16,4 +16,6 @@ public interface SensitiveDataService {
     List<SensitiveData> findSensitiveDataByDataSourceId(Integer dataSourceId);
 
     List<SensitiveData> findDistinctDataAndFields();
+
+    List<String> findSensitiveTables(Integer datasourceId);
 }
